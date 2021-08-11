@@ -1,0 +1,13 @@
+html {
+    background-color: coral;
+}
+
+h1 {
+    text-align: center;
+}
+
+#cardWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
