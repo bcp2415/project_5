@@ -2,12 +2,19 @@ html {
     background-color: coral;
 }
 
-h1 {
+h1,
+h2 {
     text-align: center;
+    margin: 35px;
 }
 
 #cardWrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    height: 330px;
+    width: 600px;
+    padding: 5px;
+    border: solid 3px blue;
+    margin: auto;
 }
