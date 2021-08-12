@@ -27,3 +27,7 @@ h2 {
     border: black solid 2px;
     margin: 20px;
 }
+
+.cardImage:hover {
+    border: yellow solid 4px;
+}

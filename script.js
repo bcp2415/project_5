@@ -40,7 +40,14 @@ function init() {
             `<img id="card${cardCount}" class="cardImage" src="images/card_back.jpg" alt="Back of playing card">`
         );
         // Set an eventListener on each card; randomly assign the 6 card objects to the 6 cards displayed
-
+        var currentCard = document.querySelector(`#card${cardCount}`);
+        currentCard.addEventListener("click", function() {
+            // turn card over displaying animal image
+            currentCard.src = "images/elephant.png";
+            // leave animal image up until 2nd card is turned
+            // check whether another card is already face up
+            // if another card is face up, check whether they are the same
+        });
         cardCount++;
     }
 }
