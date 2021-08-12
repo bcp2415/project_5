@@ -6,14 +6,12 @@ var cards = [];
 
 // Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
 function init() {
-    // Assign an animal to each of the 6 cards
-
     // Set total number of each animal for final set:
     var elephants = 2;
     var tigers = 2;
     var penguins = 2;
 
-    // Choose animal for first card to be added:
+    // Assign animals to cards randomly, ending up with 2 of each animal:
     while (cards.length < 6) {
         var randomNum = Math.floor(Math.random() * 3);
         if (randomNum == 0) {
@@ -32,23 +30,19 @@ function init() {
                 penguins = penguins - 1;
             }
         }
-        console.log(cards[0]);
-        console.log(elephants, tigers, penguins);
-        console.log(cards.length);
-        console.log(cards);
     }
 
     // Display the 6 cards in 2 columns of 3 each
     var cardCount = 1;
     while (cardCount <= 6) {
         cardWrapper.insertAdjacentHTML(
-            "afterbegin",
-            '<img class="cardImage" src="images/card_back.jpg" alt="Back of playing card">'
+            "beforeend",
+            `<img id="card${cardCount}" class="cardImage" src="images/card_back.jpg" alt="Back of playing card">`
         );
+        // Set an eventListener on each card; randomly assign the 6 card objects to the 6 cards displayed
+
         cardCount++;
     }
-
-    // Set an eventListener on each card; randomly assign the 6 card objects to the 6 cards displayed
 }
 
 //
