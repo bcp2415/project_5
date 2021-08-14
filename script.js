@@ -32,22 +32,30 @@ function init() {
         }
     }
     displayCards();
-    createOnClick();
 }
 
 // Display the 6 cards in 2 columns of 3 each
 function displayCards() {
+    console.log("displayCards called.");
     var cardCount = 1;
     while (cardCount <= 6) {
         cardWrapper.insertAdjacentHTML(
             "beforeend",
             `<img id="card${cardCount}" class="cardImage" src="images/card_back.jpg" alt="Back of playing card">`
         );
+        createOnClick(cardCount);
         cardCount++;
     }
 }
 
-function createOnClick() {}
+function createOnClick(cardCount) {
+    console.log("createOnClick called.");
+
+    var currentCard = document.querySelector(`#card${cardCount}`);
+    currentCard.addEventListener("click", function() {
+        console.log(`Card${cardCount} clicked.`);
+    });
+}
 
 //
 init();
