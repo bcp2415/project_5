@@ -54,6 +54,7 @@ function createOnClick(cardCount) {
     var currentCard = document.querySelector(`#card${cardCount}`);
     currentCard.addEventListener("click", function() {
         console.log(`Card${cardCount} clicked.`);
+        currentCard.src = `images/${cards[cardCount]}.png`;
     });
 }
 
