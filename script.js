@@ -3,6 +3,7 @@ var cardWrapper = document.querySelector("#cardWrapper");
 var scoreWrapper = document.querySelector("#scoreWrapper");
 var score = 0;
 var cards = [];
+console.log(cards.length);
 
 // Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
 function init() {
@@ -30,6 +31,8 @@ function init() {
                 penguins = penguins - 1;
             }
         }
+        console.log(cards.length);
+        console.log(cards);
     }
     displayCards();
 }
@@ -54,7 +57,7 @@ function createOnClick(cardCount) {
     var currentCard = document.querySelector(`#card${cardCount}`);
     currentCard.addEventListener("click", function() {
         console.log(`Card${cardCount} clicked.`);
-        currentCard.src = `images/${cards[cardCount]}.png`;
+        currentCard.src = `images/${cards[cardCount - 1]}.png`;
     });
 }
 
