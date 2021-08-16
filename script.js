@@ -31,8 +31,6 @@ function init() {
                 penguins = penguins - 1;
             }
         }
-        console.log(cards.length);
-        console.log(cards);
     }
     displayCards();
 }
