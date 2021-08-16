@@ -52,12 +52,19 @@ function displayCards() {
 }
 
 function createOnClick(cardCount) {
-    console.log("createOnClick called.");
-
     var currentCard = document.querySelector(`#card${cardCount}`);
     currentCard.addEventListener("click", function() {
         console.log(`Card${cardCount} clicked.`);
         currentCard.src = `images/${cards[cardCount - 1]}.png`;
+
+        // When a card is clicked, check to see if any other card is already face up
+        faceUp();
+
+        // If faceUp() returns true, show both cards face up for 2 seconds, then turn both back to face down
+        turnDown();
+
+        // If no other card is already face up (i.e. faceUp() returns FALSE), leave this card face up
+        // no code needed?  Just exit this function and go back to control...?
     });
 }
 
