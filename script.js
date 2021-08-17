@@ -8,6 +8,11 @@ var turnedUp = false;
 
 // Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
 function init() {
+    assignCards();
+    displayCards();
+}
+
+function assignCards() {
     // Set total number of each animal for final set:
     var elephants = 2;
     var tigers = 2;
@@ -33,7 +38,6 @@ function init() {
             }
         }
     }
-    displayCards();
 }
 
 // Display the 6 cards in 2 columns of 3 each
