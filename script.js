@@ -4,6 +4,7 @@ var scoreWrapper = document.querySelector("#scoreWrapper");
 var score = 0;
 var cards = [];
 console.log(cards.length);
+var turnedUp = false;
 
 // Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
 function init() {
@@ -37,7 +38,6 @@ function init() {
 
 // Display the 6 cards in 2 columns of 3 each
 function displayCards() {
-    console.log("displayCards called.");
     var cardCount = 1;
     while (cardCount <= 6) {
         cardWrapper.insertAdjacentHTML(
@@ -52,7 +52,6 @@ function displayCards() {
 function createOnClick(cardCount) {
     var currentCard = document.querySelector(`#card${cardCount}`);
     currentCard.addEventListener("click", function() {
-        console.log(`Card${cardCount} clicked.`);
         currentCard.src = `images/${cards[cardCount - 1]}.png`;
 
         // When a card is clicked, check to see if any other card is already face up
@@ -64,6 +63,23 @@ function createOnClick(cardCount) {
         // If no other card is already face up (i.e. faceUp() returns FALSE), leave this card face up
         // no code needed?  Just exit this function and go back to control...?
     });
+}
+
+function faceUp() {
+    if (turnedUp) {
+        // leave 2 cards face up for 3 seconds
+        setTimeout(turnDown(), 3000);
+    } else return;
+}
+
+function turnDown() {
+    // turn all cards face down again
+    var cardLocalCount = 0;
+    var localCard = document.querySelector(`#card${cardLocalCount}`);
+    while (cardLocalCount < 6) {
+        localCard.src = "images/card_back.jpg";
+    }
+    cardLocalCount++;
 }
 
 //
