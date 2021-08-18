@@ -62,9 +62,9 @@ function createOnClick() {
   let counter = 0;
   let currentCard = document.querySelector(`#card${counter + 1}`);
   while (counter < 6) {
-    currentCard.addEventListener("click", function (counter, currentCard) {
+    currentCard.addEventListener("click", function () {
       // Show assigned animal image if card is clicked
-      currentCard.src = `images/${cards[counter - 1]}.png`;
+      currentCard.src = `images/${cards[counter]}.png`;
 
       // When a card is clicked, check to see if any other card is already face up
       //faceUp();
@@ -75,6 +75,9 @@ function createOnClick() {
       // If no other card is already face up (i.e. faceUp() returns FALSE), leave this card face up
       // no code needed?  Just exit this function and go back to control...?
     });
+    console.log(counter);
+    console.log(`#card${counter + 1}`);
+    console.log(currentCard.src);
     counter++;
   }
 }
