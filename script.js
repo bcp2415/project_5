@@ -70,7 +70,30 @@ function createOnClick(count) {
     currentCard.src = `images/${cards[count]}.png`;
 
     // When a card is clicked, check to see if any other card is already face up
-    //faceUp();
+    if (turnedUp == true) {
+      // check for match
+      let match;
+      let pair = [];
+      let nn = 0;
+      while (nn < 6) {
+        console.log(document.querySelector(`#card${nn}`).src);
+        if (
+          document.querySelector(`#card${nn}`).src !== "images/card_back.jpg"
+        ) {
+          console.log(`Card ${nn + 1} is turned up.`);
+          nn++;
+        }
+      }
+      // if no match
+      // wait 2 seconds
+      // turn all cards face down
+      // set turnedUp back to false
+      // if match, leave both cards up, increment score
+    } else {
+      // what to do if turnedUp == false
+      turnedUp = true;
+      console.log("TurnedUp is now " + turnedUp);
+    }
 
     // If faceUp() returns true, show both cards face up for 2 seconds, then turn both back to face down
     //turnDown();
