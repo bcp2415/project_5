@@ -59,8 +59,10 @@ function displayCards() {
 
 // Set event listener on each card
 function createOnClick() {
-  //let currentCard = document.querySelector(`#card${count}`);
-  /*currentCard.addEventListener("click", function () {
+  let count = 0;
+  while (count < 6) {
+    let currentCard = document.querySelector(`#card${count}`);
+    /*currentCard.addEventListener("click", function () {
     // Show assigned animal image if card is clicked
     currentCard.src = `images/${cards[count]}.png`;
 
@@ -73,8 +75,9 @@ function createOnClick() {
     // If no other card is already face up (i.e. faceUp() returns FALSE), leave this card face up
     // no code needed?  Just exit this function and go back to control...?
   });
-  console.log(currentCard.src);
-  */
+  console.log(currentCard.src);*/
+    count++;
+  }
 }
 
 function faceUp() {
