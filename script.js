@@ -12,11 +12,7 @@ function init() {
   // Show backs of cards on screen
   displayCards();
   // Create an eventListener on each card
-  let count = 0;
-  while (count < 6) {
-    createOnClick(count);
-  }
-  count++;
+  createOnClick();
 }
 
 function assignCards() {
@@ -62,8 +58,8 @@ function displayCards() {
 }
 
 // Set event listener on each card
-function createOnClick(count) {
-  let currentCard = document.querySelector(`#card${count}`);
+function createOnClick() {
+  //let currentCard = document.querySelector(`#card${count}`);
   /*currentCard.addEventListener("click", function () {
     // Show assigned animal image if card is clicked
     currentCard.src = `images/${cards[count]}.png`;
