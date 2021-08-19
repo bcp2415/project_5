@@ -12,7 +12,11 @@ function init() {
   // Show backs of cards on screen
   displayCards();
   // Create an eventListener on each card
-  createOnClick();
+  let count = 0;
+  while (count < 6) {
+    createOnClick(count);
+  }
+  count++;
 }
 
 function assignCards() {
@@ -44,10 +48,10 @@ function assignCards() {
   }
 }
 
-// Display the 6 cards in 2 columns of 3 each
+// Display the 6 cards face down
 function displayCards() {
-  let cardCount = 1;
-  while (cardCount <= 6) {
+  let cardCount = 0;
+  while (cardCount < 6) {
     cardWrapper.insertAdjacentHTML(
       "beforeend",
       `<img id="card${cardCount}" class="cardImage" src="images/card_back.jpg" alt="Back of playing card">`
@@ -58,28 +62,23 @@ function displayCards() {
 }
 
 // Set event listener on each card
-function createOnClick() {
-  let counter = 0;
-  let currentCard = document.querySelector(`#card${counter + 1}`);
-  while (counter < 6) {
-    currentCard.addEventListener("click", function () {
-      // Show assigned animal image if card is clicked
-      currentCard.src = `images/${cards[counter]}.png`;
+function createOnClick(count) {
+  let currentCard = document.querySelector(`#card${count}`);
+  /*currentCard.addEventListener("click", function () {
+    // Show assigned animal image if card is clicked
+    currentCard.src = `images/${cards[count]}.png`;
 
-      // When a card is clicked, check to see if any other card is already face up
-      //faceUp();
+    // When a card is clicked, check to see if any other card is already face up
+    //faceUp();
 
-      // If faceUp() returns true, show both cards face up for 2 seconds, then turn both back to face down
-      //turnDown();
+    // If faceUp() returns true, show both cards face up for 2 seconds, then turn both back to face down
+    //turnDown();
 
-      // If no other card is already face up (i.e. faceUp() returns FALSE), leave this card face up
-      // no code needed?  Just exit this function and go back to control...?
-    });
-    console.log(counter);
-    console.log(`#card${counter + 1}`);
-    console.log(currentCard.src);
-    counter++;
-  }
+    // If no other card is already face up (i.e. faceUp() returns FALSE), leave this card face up
+    // no code needed?  Just exit this function and go back to control...?
+  });
+  console.log(currentCard.src);
+  */
 }
 
 function faceUp() {
