@@ -12,12 +12,11 @@ function init() {
   // Show backs of cards on screen
   displayCards();
   // Create an eventListener on each card
-  createOnClick(0);
-  createOnClick(1);
-  createOnClick(2);
-  createOnClick(3);
-  createOnClick(4);
-  createOnClick(5);
+  let n = 0;
+  while (n < 6) {
+    createOnClick(n);
+    n++;
+  }
 }
 
 function assignCards() {
