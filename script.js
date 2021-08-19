@@ -7,6 +7,7 @@ let turnedUp = false;
 
 // Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
 function init() {
+  console.log(turnedUp);
   // Assign an animal to each card
   assignCards();
   // Show backs of cards on screen
@@ -79,22 +80,4 @@ function createOnClick(count) {
   });
 }
 
-function faceUp() {
-  if (turnedUp) {
-    // leave 2 cards face up for 3 seconds
-    setTimeout(turnDown(), 3000);
-  } else return;
-}
-
-function turnDown() {
-  // turn all cards face down again
-  let cardLocalCount = 0;
-  let localCard = document.querySelector(`#card${cardLocalCount}`);
-  while (cardLocalCount < 6) {
-    localCard.src = "images/card_back.jpg";
-  }
-  cardLocalCount++;
-}
-
-//
 init();
