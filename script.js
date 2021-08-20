@@ -73,7 +73,7 @@ function createOnClick(count) {
     if (turnedUp == true) {
       // check for match
       let match = [];
-      let pair = [];
+
       // iterate through all 6 cards
       let nn = 0;
       while (nn < 6) {
@@ -93,6 +93,14 @@ function createOnClick(count) {
         console.log("The cards don't match.");
         // wait 2 seconds
         // turn all cards face down
+        setTimeout(function () {
+          let n = 0;
+          while (n < 6) {
+            console.log(n);
+            document.querySelector(`#card${n}`).src = "images/card_back.jpg";
+            n++;
+          }
+        }, 2000);
         // set turnedUp back to false
         turnedUp = false;
       } else if (match[0] == match[1]) {
