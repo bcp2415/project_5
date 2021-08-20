@@ -90,7 +90,6 @@ function createOnClick(count) {
       // test whether the 2 cards in match[] are the same or different
       // if no match
       if (match[0] !== match[1]) {
-        console.log("The cards don't match.");
         // wait 2 seconds
         // turn all cards face down
         setTimeout(function () {
