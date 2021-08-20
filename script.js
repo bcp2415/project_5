@@ -72,27 +72,36 @@ function createOnClick(count) {
     // When a card is clicked, check to see if any other card is already face up
     if (turnedUp == true) {
       // check for match
-      let match;
+      let match = [];
       let pair = [];
+      // iterate through all 6 cards
       let nn = 0;
       while (nn < 6) {
-        console.log(document.querySelector(`#card${nn}`).src);
-        if (
-          document.querySelector(`#card${nn}`).src !== "images/card_back.jpg"
-        ) {
+        // test whether each card is the one already turned up
+        let testCard = document.querySelector(`#card${nn}`).src;
+        if (!testCard.endsWith("card_back.jpg")) {
           console.log(`Card ${nn + 1} is turned up.`);
-          nn++;
+          // add the turned-up cards to match[]
+          match.push(`${cards[nn]}`);
+          console.log(match);
         }
+        nn++;
       }
+      // test whether the 2 cards in match[] are the same or different
       // if no match
-      // wait 2 seconds
-      // turn all cards face down
-      // set turnedUp back to false
-      // if match, leave both cards up, increment score
+      if (match[0] !== match[1]) {
+        console.log("The cards don't match.");
+        // wait 2 seconds
+        // turn all cards face down
+        // set turnedUp back to false
+        turnedUp = false;
+      } else if (match[0] == match[1]) {
+        console.log("The cards match!");
+        // if match, leave both cards up, increment score
+      }
     } else {
       // what to do if turnedUp == false
       turnedUp = true;
-      console.log("TurnedUp is now " + turnedUp);
     }
 
     // If faceUp() returns true, show both cards face up for 2 seconds, then turn both back to face down
