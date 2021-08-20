@@ -96,7 +96,6 @@ function createOnClick(count) {
         setTimeout(function () {
           let n = 0;
           while (n < 6) {
-            console.log(n);
             document.querySelector(`#card${n}`).src = "images/card_back.jpg";
             n++;
           }
