@@ -4,6 +4,7 @@ const scoreWrapper = document.querySelector("#scoreWrapper");
 let score = 0;
 let cards = [];
 let turnedUp = false;
+let match = [];
 
 // Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
 function init() {
@@ -72,7 +73,6 @@ function createOnClick(count) {
     // When a card is clicked, check to see if any other card is already face up
     if (turnedUp == true) {
       // check for match
-      let match = [];
 
       // iterate through all 6 cards
       let nn = 0;
