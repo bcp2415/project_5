@@ -69,7 +69,7 @@ function createOnClick(count) {
   let currentCard = document.querySelector(`#card${count}`);
   currentCard.addEventListener("click", function () {
     // Show assigned animal image if card is clicked
-    currentCard.src = `images/${cards[count]}.png`;
+    turnFaceUp(count);
 
     // When a card is clicked, check to see if any other card is already face up
     if (turnedUp == true) {
@@ -96,13 +96,15 @@ function createOnClick(count) {
         setTimeout(function () {
           let n = 0;
           while (n < 6) {
-            // skip the cards whose numbers are stored in leaveTurnedUp[]:
-            let subCount = 0;
-            while (subCount < 6) {
-              if ()
-              subCount++;
-            };
             document.querySelector(`#card${n}`).src = "images/card_back.jpg";
+            n++;
+          }
+
+          n = 0;
+          while (n < 6) {
+            document.querySelector(
+              `#cards[${leaveTurnedUp[n]}]`
+            ).src = `images/${cards[count]}`;
             n++;
           }
         }, 2000);
@@ -127,6 +129,11 @@ function createOnClick(count) {
       turnedUp = true;
     }
   });
+}
+
+function turnFaceUp(n) {
+  const currentCard = document.querySelector(`#cards[${n}]`);
+  currentCard.src = `images/${cards[n]}.png`;
 }
 
 init();
