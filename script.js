@@ -5,6 +5,7 @@ let score = 0;
 let cards = [];
 let turnedUp = false;
 let matched = [];
+let leaveTurnedUp = [];
 
 // Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
 function init() {
@@ -95,6 +96,12 @@ function createOnClick(count) {
         setTimeout(function () {
           let n = 0;
           while (n < 6) {
+            // skip the cards whose numbers are stored in leaveTurnedUp[]:
+            let subCount = 0;
+            while (subCount < 6) {
+              if ()
+              subCount++;
+            };
             document.querySelector(`#card${n}`).src = "images/card_back.jpg";
             n++;
           }
@@ -102,20 +109,23 @@ function createOnClick(count) {
         // set turnedUp back to false
         matched = [];
         turnedUp = false;
-      } else if (matched[0] == matched[1]) {
+      } else if (matched[0] === matched[1]) {
         console.log("The cards match!");
         // if match, leave both cards up, increment score
+        // Iterate through all cards to discover the numbers of the 2 cards that are turned up and match:
+        let nnn = 0;
+        while (nnn < 6) {
+          if (cards[nnn] === matched[0]) {
+            leaveTurnedUp.push(nnn);
+            console.log(leaveTurnedUp);
+          }
+          nnn++;
+        }
       }
     } else {
       // what to do if turnedUp == false
       turnedUp = true;
     }
-
-    // If faceUp() returns true, show both cards face up for 2 seconds, then turn both back to face down
-    //turnDown();
-
-    // If no other card is already face up (i.e. faceUp() returns FALSE), leave this card face up
-    // no code needed?  Just exit this function and go back to control...?
   });
 }
 
