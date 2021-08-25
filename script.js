@@ -100,6 +100,7 @@ function createOnClick(count) {
           }
         }, 2000);
         // set turnedUp back to false
+        matched = [];
         turnedUp = false;
       } else if (matched[0] == matched[1]) {
         console.log("The cards match!");
