@@ -4,7 +4,7 @@ const scoreWrapper = document.querySelector("#scoreWrapper");
 let score = 0;
 let cards = [];
 let turnedUp = false;
-let match = [];
+let matched = [];
 
 // Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
 function init() {
@@ -82,14 +82,14 @@ function createOnClick(count) {
         if (!testCard.endsWith("card_back.jpg")) {
           console.log(`Card ${nn + 1} is turned up.`);
           // add the turned-up cards to match[]
-          match.push(`${cards[nn]}`);
-          console.log(match);
+          matched.push(`${cards[nn]}`);
+          console.log(matched);
         }
         nn++;
       }
-      // test whether the 2 cards in match[] are the same or different
+      // test whether the 2 cards in matched[] are the same or different
       // if no match
-      if (match[0] !== match[1]) {
+      if (matched[0] !== matched[1]) {
         // wait 2 seconds
         // turn all cards face down
         setTimeout(function () {
@@ -101,7 +101,7 @@ function createOnClick(count) {
         }, 2000);
         // set turnedUp back to false
         turnedUp = false;
-      } else if (match[0] == match[1]) {
+      } else if (matched[0] == matched[1]) {
         console.log("The cards match!");
         // if match, leave both cards up, increment score
       }
