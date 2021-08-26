@@ -1,12 +1,18 @@
 // Declare variables
 const cardWrapper = document.querySelector("#cardWrapper");
 const scoreWrapper = document.querySelector("#scoreWrapper");
-let score = 0;
 
-// Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
-function init() {
-  // Assign an animal to each card
-  assignCards();
+class Card {
+  constructor(number) {
+    this.number = number;
+  }
+}
+
+let n = 0;
+while (n < 6) {
+  const card-`${n}` = new Card(`${n}`);
+  console.log(card`${n}`);
+  n++;
 }
 
 function assignCards() {
@@ -37,5 +43,3 @@ function assignCards() {
     }
   }
 }
-
-init();
