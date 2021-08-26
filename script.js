@@ -2,24 +2,11 @@
 const cardWrapper = document.querySelector("#cardWrapper");
 const scoreWrapper = document.querySelector("#scoreWrapper");
 let score = 0;
-let cards = [];
-let turnedUp = false;
-let matched = [];
-let leaveTurnedUp = [];
 
 // Initialize game:  distribute cards randomly, display on screen, set function to run on clicking any card
 function init() {
-  console.log(turnedUp);
   // Assign an animal to each card
   assignCards();
-  // Show backs of cards on screen
-  displayCards();
-  // Create an eventListener on each card
-  let n = 0;
-  while (n < 6) {
-    createOnClick(n);
-    n++;
-  }
 }
 
 function assignCards() {
@@ -49,91 +36,6 @@ function assignCards() {
       }
     }
   }
-}
-
-// Display the 6 cards face down
-function displayCards() {
-  let cardCount = 0;
-  while (cardCount < 6) {
-    cardWrapper.insertAdjacentHTML(
-      "beforeend",
-      `<img id="card${cardCount}" class="cardImage" src="images/card_back.jpg" alt="Back of playing card">`
-    );
-
-    cardCount++;
-  }
-}
-
-// Set event listener on each card
-function createOnClick(count) {
-  let currentCard = document.querySelector(`#card${count}`);
-  currentCard.addEventListener("click", function () {
-    // Show assigned animal image if card is clicked
-    turnFaceUp(count);
-
-    // When a card is clicked, check to see if any other card is already face up
-    if (turnedUp == true) {
-      // check for match
-
-      // iterate through all 6 cards
-      let nn = 0;
-      while (nn < 6) {
-        // test whether each card is the one already turned up
-        let testCard = document.querySelector(`#card${nn}`).src;
-        if (!testCard.endsWith("card_back.jpg")) {
-          console.log(`Card ${nn + 1} is turned up.`);
-          // add the turned-up cards to match[]
-          matched.push(`${cards[nn]}`);
-          console.log(matched);
-        }
-        nn++;
-      }
-      // test whether the 2 cards in matched[] are the same or different
-      // if no match
-      if (matched[0] !== matched[1]) {
-        // wait 2 seconds
-        // turn all cards face down
-        setTimeout(function () {
-          let n = 0;
-          while (n < 6) {
-            document.querySelector(`#card${n}`).src = "images/card_back.jpg";
-            n++;
-          }
-
-          n = 0;
-          while (n < 6) {
-            document.querySelector(
-              `#cards[${leaveTurnedUp[n]}]`
-            ).src = `images/${cards[count]}`;
-            n++;
-          }
-        }, 2000);
-        // set turnedUp back to false
-        matched = [];
-        turnedUp = false;
-      } else if (matched[0] === matched[1]) {
-        console.log("The cards match!");
-        // if match, leave both cards up, increment score
-        // Iterate through all cards to discover the numbers of the 2 cards that are turned up and match:
-        let nnn = 0;
-        while (nnn < 6) {
-          if (cards[nnn] === matched[0]) {
-            leaveTurnedUp.push(nnn);
-            console.log(leaveTurnedUp);
-          }
-          nnn++;
-        }
-      }
-    } else {
-      // what to do if turnedUp == false
-      turnedUp = true;
-    }
-  });
-}
-
-function turnFaceUp(n) {
-  const currentCard = document.querySelector(`#cards[${n}]`);
-  currentCard.src = `images/${cards[n]}.png`;
 }
 
 init();
