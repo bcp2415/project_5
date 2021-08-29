@@ -8,8 +8,11 @@ let penguins = 2;
 cards = [];
 
 let Card = class {
-  constructor(animal) {
+  constructor(animal, number) {
     this.animal = animal;
+    this.number = number;
+    this.image = "card_back.jpg";
+    this.turnedUp = false;
   }
 };
 
@@ -17,14 +20,18 @@ function init() {
   // generate cards, store each as an object in the cards array
   genCards();
   console.log(cards);
+  // display all 6 cards face down
   showFaceDown();
+
+  // add eventListener to each card
+  clickCard();
 }
 
 function genCards() {
   let counter = 0;
   while (counter < 6) {
     let animal = animalPicker();
-    let card = new Card(animal);
+    let card = new Card(animal, counter + 1);
     cards.push(card);
     counter++;
   }
@@ -62,6 +69,21 @@ function showFaceDown() {
       "beforeend",
       `<img src="images/card_back.jpg" class=cardImage id=card-${counter + 1}>`
     );
+    counter++;
+  }
+}
+
+function clickCard() {
+  // add event listener to each card
+  let counter = 0;
+  while (counter < 6) {
+    const cardPointer = document.querySelector(`#card-${counter + 1}`);
+    cardPointer.addEventListener("click", function () {
+      // display animal image
+      changeImage();
+      // update turnedUp property on card to "true"
+      updateCardProperty();
+    });
     counter++;
   }
 }
