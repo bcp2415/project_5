@@ -55,7 +55,15 @@ function animalPicker() {
 }
 
 function showFaceDown() {
-  // show all 6 cards face down
+  let counter = 0;
+  while (counter < 6) {
+    // show all 6 cards face down
+    cardWrapper.insertAdjacentHTML(
+      "beforeend",
+      `<img src="images/card_back.jpg" class=cardImage id=card-${counter + 1}>`
+    );
+    counter++;
+  }
 }
 
 init();
