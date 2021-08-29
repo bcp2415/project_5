@@ -1,11 +1,13 @@
 // Declare variables
 const cardWrapper = document.querySelector("#cardWrapper");
 const scoreWrapper = document.querySelector("#scoreWrapper");
+let elephants = 2;
+let tigers = 2;
+let penguins = 2;
+
 cards = [];
 
 function init() {
-  console.log("init fcn called.");
-
   // generate cards, store each as an object in the cards array
   genCards();
 }
@@ -13,7 +15,7 @@ function init() {
 function genCards() {
   let counter = 0;
   while (counter < 6) {
-    const animal = animalPicker();
+    let animal = animalPicker();
     console.log(
       `Now generating card ${counter + 1}...with an ${animal} on it.`
     );
@@ -22,10 +24,27 @@ function genCards() {
 }
 
 function animalPicker() {
-  let elephants = 2;
-  let tigers = 2;
-  let penguins = 2;
-  let choice = Math.floor(Math.random);
+  let choice = Math.floor(Math.random() * 3);
+
+  if (choice === 0 && elephants > 0) {
+    elephants--;
+    return "elephant";
+  } else if (choice === 1 && tigers > 0) {
+    tigers--;
+    return "tiger";
+  } else if (choice === 2 && penguins > 0) {
+    penguins--;
+    return "penguin";
+  } else if (tigers) {
+    --tigers;
+    return "tiger";
+  } else if (penguins) {
+    --penguins;
+    return "penguin";
+  } else if (elephants) {
+    --elephants;
+    return "elephant";
+  }
 }
 
 init();
