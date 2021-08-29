@@ -7,18 +7,25 @@ let penguins = 2;
 
 cards = [];
 
+let Card = class {
+  constructor(animal) {
+    this.animal = animal;
+  }
+};
+
 function init() {
   // generate cards, store each as an object in the cards array
   genCards();
+  console.log(cards);
+  showFaceDown();
 }
 
 function genCards() {
   let counter = 0;
   while (counter < 6) {
     let animal = animalPicker();
-    console.log(
-      `Now generating card ${counter + 1}...with an ${animal} on it.`
-    );
+    let card = new Card(animal);
+    cards.push(card);
     counter++;
   }
 }
@@ -45,6 +52,10 @@ function animalPicker() {
     --elephants;
     return "elephant";
   }
+}
+
+function showFaceDown() {
+  // show all 6 cards face down
 }
 
 init();
