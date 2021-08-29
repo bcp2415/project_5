@@ -3,11 +3,7 @@ const cardWrapper = document.querySelector("#cardWrapper");
 const scoreWrapper = document.querySelector("#scoreWrapper");
 cards = [];
 
-class Card {
-  constructor(number) {
-    this.number = number;
-  }
-}
+
 
 let n = 0;
 while (n < 6) {
