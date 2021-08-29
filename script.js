@@ -22,7 +22,10 @@ function genCards() {
 }
 
 function animalPicker() {
-  return "elephant";
+  let elephants = 2;
+  let tigers = 2;
+  let penguins = 2;
+  let choice = Math.floor(Math.random);
 }
 
 init();
