@@ -18,7 +18,6 @@ let Card = class {
 function init() {
   // generate cards, store each as an object in the cards array
   genCards();
-  console.log(cards);
   // display all 6 cards face down
   showFaceDown();
 
@@ -83,21 +82,62 @@ function clickCard() {
       changeImage(intCount);
       // update turnedUp property on card to "true"
       updateCardProperty(intCount);
+
+      // check whether any other card is already turnedUp=true
+      checkTurnedUp(intCount);
     });
     counter++;
   }
 }
 
 function changeImage(counter) {
-  console.log(`changeImage called on card ${counter}.`);
   const cardID = document.querySelector(`#card-${counter}`);
   cardID.src = `images/${cards[counter].animal}.png`;
 }
 
 function updateCardProperty(counter) {
-  console.log(`updateCardProperty called on card ${counter}.`);
   const cardID = document.querySelector(`#card-${counter}`);
   cards[counter].turnedUp = true;
+}
+
+function checkTurnedUp(intCount) {
+  // check whether any other card has turnedUp = true
+  let counter = 0;
+  let isSecondCard = false;
+  while (counter < 6) {
+    if (counter === intCount) {
+    } else if (cards[counter].turnedUp === true) {
+      isSecondCard = true;
+    }
+    counter++;
+  }
+  console.log(`This is the second card turned up:  ${isSecondCard}`);
+  // if not (i.e. this is the only card turnedUp), do nothing
+  // if yes (i.e. this is the 2nd card turnedUp at the same time), check if the 2 turnedUp cards match...if not, turn back face down, if they match, do other stuff...
+  if (isSecondCard) {
+    checkMatch();
+  }
+}
+
+function checkMatch() {
+  // check whether 2 turned up cards have same animal
+  // find the 2 cards turned up, put both together in an array called compare[]
+  let counter = 0;
+  let compare = [];
+  while (counter < 6) {
+    if (cards[counter].turnedUp === true) {
+      compare.push(cards[counter]);
+    }
+    counter++;
+  }
+  // check if the 2 members of compare[] have same .animal property or differ
+  if (compare[0].animal === compare[1].animal) {
+    // do something if animals are same
+    console.log("The animals match!");
+  } else {
+    // do something if animals don't match
+    console.log("The animals don't match!");
+  }
 }
 
 init();
