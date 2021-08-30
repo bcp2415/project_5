@@ -10,7 +10,6 @@ cards = [];
 let Card = class {
   constructor(animal, number) {
     this.animal = animal;
-    this.number = number;
     this.image = "card_back.jpg";
     this.turnedUp = false;
   }
@@ -67,7 +66,7 @@ function showFaceDown() {
     // show all 6 cards face down
     cardWrapper.insertAdjacentHTML(
       "beforeend",
-      `<img src="images/card_back.jpg" class=cardImage id=card-${counter + 1}>`
+      `<img src="images/card_back.jpg" class=cardImage id=card-${counter}>`
     );
     counter++;
   }
@@ -77,15 +76,26 @@ function clickCard() {
   // add event listener to each card
   let counter = 0;
   while (counter < 6) {
-    const cardPointer = document.querySelector(`#card-${counter + 1}`);
+    const cardPointer = document.querySelector(`#card-${counter}`);
+    let intCount = counter;
     cardPointer.addEventListener("click", function () {
       // display animal image
-      changeImage();
+      changeImage(intCount);
       // update turnedUp property on card to "true"
-      updateCardProperty();
+      updateCardProperty(intCount);
     });
     counter++;
   }
+}
+
+function changeImage(counter) {
+  console.log(`changeImage called on card ${counter}.`);
+  const cardID = document.querySelector(`#card-${counter}`);
+  cardID.src = `images/${cards[counter].animal}.png`;
+}
+
+function updateCardProperty(counter) {
+  console.log(`updateCardProperty called on card ${counter}.`);
 }
 
 init();
