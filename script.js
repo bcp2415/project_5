@@ -96,6 +96,8 @@ function changeImage(counter) {
 
 function updateCardProperty(counter) {
   console.log(`updateCardProperty called on card ${counter}.`);
+  const cardID = document.querySelector(`#card-${counter}`);
+  cards[counter].turnedUp = true;
 }
 
 init();
