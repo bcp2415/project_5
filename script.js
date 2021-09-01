@@ -137,7 +137,20 @@ function checkMatch() {
   } else {
     // do something if animals don't match
     console.log("The animals don't match!");
+    turnAllCardsFaceDown();
   }
+}
+
+function turnAllCardsFaceDown() {
+  setTimeout(function () {
+    // turn all cards that are face up, face down
+    let counter = 0;
+    while (counter < 6) {
+      let currentCard = document.querySelector(`#card-${counter}`);
+      currentCard.src = "images/card_back.jpg";
+      counter++;
+    }
+  }, 2000);
 }
 
 init();
