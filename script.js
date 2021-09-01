@@ -10,7 +10,7 @@ cards = [];
 let Card = class {
   constructor(animal, number) {
     this.animal = animal;
-    this.turnedUp = false;
+    this.readyToCompare = false;
     this.matched = false;
   }
 };
@@ -80,11 +80,11 @@ function clickCard() {
     cardPointer.addEventListener("click", function () {
       // display animal image
       changeImage(intCount);
-      // update turnedUp property on card to "true"
+      // update readyToCompare property on card to "true"
       updateCardProperty(intCount);
 
-      // check whether any other card is already turnedUp=true
-      checkTurnedUp(intCount);
+      // check whether any other card is already readyToCompare=true
+      checkReadyToCompare(intCount);
     });
     counter++;
   }
@@ -96,25 +96,24 @@ function changeImage(counter) {
 }
 
 function updateCardProperty(counter) {
-  const cardID = document.querySelector(`#card-${counter}`);
-  cards[counter].turnedUp = true;
+  cards[counter].readyToCompare = true;
 }
 
-function checkTurnedUp(intCount) {
-  // check whether any other card has turnedUp = true
+function checkReadyToCompare(intCount) {
+  // check whether any other card has readyToCompare = true
+  let numberReady = 0;
   let counter = 0;
-  let isSecondCard = false;
   while (counter < 6) {
     if (counter === intCount) {
-    } else if (cards[counter].turnedUp === true) {
-      isSecondCard = true;
+    } else if (cards[counter].readyToCompare === true) {
+      numberReady++;
     }
     counter++;
   }
   console.log(`This is the second card turned up:  ${isSecondCard}`);
-  // if not (i.e. this is the only card turnedUp), do nothing
-  // if yes (i.e. this is the 2nd card turnedUp at the same time), check if the 2 turnedUp cards match...if not, turn back face down, if they match, do other stuff...
-  if (isSecondCard) {
+  // if not (i.e. this is the only card readyToCompare), do nothing
+  // if yes (i.e. this is the 2nd card readyToCompare at the same time), check if the 2 readyToCompare cards match...if not, turn back face down, if they match, do other stuff...
+  if (numberReady === 2) {
     checkMatch();
   }
 }
@@ -125,7 +124,7 @@ function checkMatch() {
   let counter = 0;
   let compare = [];
   while (counter < 6) {
-    if (cards[counter].turnedUp === true) {
+    if (cards[counter].readyToCompare === true) {
       compare.push(cards[counter]);
     }
     counter++;
@@ -135,10 +134,11 @@ function checkMatch() {
     // do something if animals are same
     console.log(compare);
     console.log("The animals match!");
+    // find the 2 matching cards, set the property "matched" to true on both of them
     let newCounter = 0;
     while (newCounter < 6) {
-      if (cards[counter].turnedUp === true) {
-        cards[counter].matched = true;
+      if (cards[newCounter].readyToCompare === true) {
+        cards[newCounter].matched = true;
       }
       newCounter++;
     }
@@ -155,7 +155,9 @@ function turnAllCardsFaceDown() {
     let counter = 0;
     while (counter < 6) {
       let currentCard = document.querySelector(`#card-${counter}`);
-      currentCard.src = "images/card_back.jpg";
+      if (cards[counter].matched === false) {
+        currentCard.src = "images/card_back.jpg";
+      }
       counter++;
     }
   }, 2000);
