@@ -10,8 +10,8 @@ cards = [];
 let Card = class {
   constructor(animal, number) {
     this.animal = animal;
-    this.image = "card_back.jpg";
     this.turnedUp = false;
+    this.matched = false;
   }
 };
 
@@ -133,7 +133,15 @@ function checkMatch() {
   // check if the 2 members of compare[] have same .animal property or differ
   if (compare[0].animal === compare[1].animal) {
     // do something if animals are same
+    console.log(compare);
     console.log("The animals match!");
+    let newCounter = 0;
+    while (newCounter < 6) {
+      if (cards[counter].turnedUp === true) {
+        cards[counter].matched = true;
+      }
+      newCounter++;
+    }
   } else {
     // do something if animals don't match
     console.log("The animals don't match!");
