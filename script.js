@@ -102,46 +102,34 @@ function updateCardProperty(counter) {
 function checkReadyToCompare(intCount) {
   // check whether any other card has readyToCompare = true
   let numberReady = 0;
+  let comparands = [];
   let counter = 0;
   while (counter < 6) {
-    if (counter === intCount) {
-    } else if (cards[counter].readyToCompare === true) {
+    if (cards[counter].readyToCompare === true) {
+      comparands.push(counter);
       numberReady++;
     }
     counter++;
   }
-  console.log(`This is the second card turned up:  ${isSecondCard}`);
-  // if not (i.e. this is the only card readyToCompare), do nothing
-  // if yes (i.e. this is the 2nd card readyToCompare at the same time), check if the 2 readyToCompare cards match...if not, turn back face down, if they match, do other stuff...
+
   if (numberReady === 2) {
-    checkMatch();
+    console.log(
+      `Calling checkMatch on comparands ${comparands[0]} and ${comparands[1]}`
+    );
+    checkMatch(comparands[0], comparands[1]);
   }
 }
 
-function checkMatch() {
+function checkMatch(first, second) {
   // check whether 2 turned up cards have same animal
-  // find the 2 cards turned up, put both together in an array called compare[]
-  let counter = 0;
-  let compare = [];
-  while (counter < 6) {
-    if (cards[counter].readyToCompare === true) {
-      compare.push(cards[counter]);
-    }
-    counter++;
-  }
   // check if the 2 members of compare[] have same .animal property or differ
-  if (compare[0].animal === compare[1].animal) {
+  if (cards[first].animal === cards[second].animal) {
     // do something if animals are same
-    console.log(compare);
-    console.log("The animals match!");
-    // find the 2 matching cards, set the property "matched" to true on both of them
-    let newCounter = 0;
-    while (newCounter < 6) {
-      if (cards[newCounter].readyToCompare === true) {
-        cards[newCounter].matched = true;
-      }
-      newCounter++;
-    }
+    // set the property "matched" to true on both of them
+    cards[first].matched = true;
+    cards[second].matched = true;
+    cards[first].readyToCompare = false;
+    cards[second].readyToCompare = false;
   } else {
     // do something if animals don't match
     console.log("The animals don't match!");
