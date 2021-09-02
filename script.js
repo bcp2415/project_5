@@ -4,8 +4,9 @@ const scoreWrapper = document.querySelector("#scoreWrapper");
 let elephants = 2;
 let tigers = 2;
 let penguins = 2;
+let score = 0;
 
-cards = [];
+let cards = [];
 
 let Card = class {
   constructor(animal, number) {
@@ -96,7 +97,9 @@ function changeImage(counter) {
 }
 
 function updateCardProperty(counter) {
-  cards[counter].readyToCompare = true;
+  if (cards[counter].matched === false) {
+    cards[counter].readyToCompare = true;
+  }
 }
 
 function checkReadyToCompare(intCount) {
@@ -124,12 +127,13 @@ function checkMatch(first, second) {
   // check whether 2 turned up cards have same animal
   // check if the 2 members of compare[] have same .animal property or differ
   if (cards[first].animal === cards[second].animal) {
-    // do something if animals are same
-    // set the property "matched" to true on both of them
+    // if animals match, set the property "matched" to true on both of them
     cards[first].matched = true;
     cards[second].matched = true;
     cards[first].readyToCompare = false;
     cards[second].readyToCompare = false;
+    updateScore();
+    displayScore();
   } else {
     // do something if animals don't match
     console.log("The animals don't match!");
@@ -139,16 +143,26 @@ function checkMatch(first, second) {
 
 function turnAllCardsFaceDown() {
   setTimeout(function () {
-    // turn all cards that are face up, face down
+    // turn all cards that are face up, face down, except for those already matched
     let counter = 0;
     while (counter < 6) {
       let currentCard = document.querySelector(`#card-${counter}`);
       if (cards[counter].matched === false) {
         currentCard.src = "images/card_back.jpg";
+        cards[counter].readyToCompare = false;
       }
       counter++;
     }
   }, 2000);
+}
+
+function updateScore() {
+  // add 1 to score
+  score++;
+}
+
+function displayScore() {
+  // update display of score in DOM
 }
 
 init();
