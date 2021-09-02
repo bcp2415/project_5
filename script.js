@@ -163,6 +163,8 @@ function updateScore() {
 
 function displayScore() {
   // update display of score in DOM
+  const scoreDOM = document.querySelector("#yourScore");
+  scoreDOM.innerText = `Your score: ${String(score)}`;
 }
 
 init();
