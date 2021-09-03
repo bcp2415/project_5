@@ -121,12 +121,7 @@ function checkReadyToCompare(intCount) {
   if (numberReady === 2) {
     checkMatch(comparands[0], comparands[1]);
   } else if (alreadyMatched === 6) {
-    let elephants = 2;
-    let tigers = 2;
-    let penguins = 2;
-
-    let cards = [];
-    init();
+    reInitialize();
   }
 }
 
@@ -171,6 +166,16 @@ function displayScore() {
   // update display of score in DOM
   const scoreDOM = document.querySelector("#yourScore");
   scoreDOM.innerText = `Your score: ${String(score)}`;
+}
+
+function reInitialize() {
+  let elephants = 2;
+  let tigers = 2;
+  let penguins = 2;
+
+  cards = [];
+  // remove first set of cards from DOM
+  init();
 }
 
 init();
