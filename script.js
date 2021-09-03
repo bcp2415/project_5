@@ -105,21 +105,28 @@ function updateCardProperty(counter) {
 function checkReadyToCompare(intCount) {
   // check whether any other card has readyToCompare = true
   let numberReady = 0;
+  let alreadyMatched = 0;
   let comparands = [];
   let counter = 0;
   while (counter < 6) {
     if (cards[counter].readyToCompare === true) {
       comparands.push(counter);
       numberReady++;
+    } else if (cards[counter].matched === true) {
+      alreadyMatched++;
     }
     counter++;
   }
 
   if (numberReady === 2) {
-    console.log(
-      `Calling checkMatch on comparands ${comparands[0]} and ${comparands[1]}`
-    );
     checkMatch(comparands[0], comparands[1]);
+  } else if (alreadyMatched === 6) {
+    let elephants = 2;
+    let tigers = 2;
+    let penguins = 2;
+
+    let cards = [];
+    init();
   }
 }
 
@@ -136,7 +143,6 @@ function checkMatch(first, second) {
     displayScore();
   } else {
     // do something if animals don't match
-    console.log("The animals don't match!");
     turnAllCardsFaceDown();
   }
 }
