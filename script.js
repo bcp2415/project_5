@@ -169,12 +169,14 @@ function displayScore() {
 }
 
 function reInitialize() {
-  let elephants = 2;
-  let tigers = 2;
-  let penguins = 2;
-
+  elephants = 2;
+  tigers = 2;
+  penguins = 2;
   cards = [];
   // remove first set of cards from DOM
+  while (cardWrapper.firstChild) {
+    cardWrapper.removeChild(cardWrapper.firstChild);
+  }
   init();
 }
 
