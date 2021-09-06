@@ -24,6 +24,7 @@ function init() {
 
   // add eventListener to each card
   clickCard();
+  console.log(cards);
 }
 
 function genCards() {
@@ -165,7 +166,14 @@ function updateScore() {
 function displayScore() {
   // update display of score in DOM
   const scoreDOM = document.querySelector("#yourScore");
-  scoreDOM.innerText = `Your score: ${String(score)}`;
+  if (score % 3 !== 0) {
+    scoreDOM.innerText = `Your score: ${String(score)}`;
+  } else if (score % 3 === 0) {
+    scoreDOM.innerText = `Your score: ${String(score)}`;
+    setTimeout(function () {
+      reInitialize();
+    }, 1700);
+  }
 }
 
 function reInitialize() {
